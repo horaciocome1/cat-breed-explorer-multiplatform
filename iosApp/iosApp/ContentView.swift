@@ -1,3 +1,11 @@
+//
+//  SecurityKeyLibrary.swift
+//  iosApp
+//
+//  Created by Horácio Comé on 20/12/2023.
+//  Copyright © 2023 orgName. All rights reserved.
+//
+
 import UIKit
 import SwiftUI
 import shared
