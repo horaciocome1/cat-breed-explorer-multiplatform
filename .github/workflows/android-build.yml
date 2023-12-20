@@ -1,0 +1,37 @@
+name: Android Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Add API key
+      run:
+        echo "$CONTENT_ANDROID" > androidApp/src/androidMain/cpp/libnative-lib.cpp
+        echo "$CONTENT_IOS" > iosApp/iosApp/SecurityKeyLibrary.swift
+      env:
+        CONTENT_ANDROID: ${{ secrets.LIBNATIVE_LIB_CPP_CONTENT_ANDROID }}
+        CONTENT_IOS: ${{ secrets.LIBNATIVE_LIB_CPP_CONTENT_IOS }}
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew build

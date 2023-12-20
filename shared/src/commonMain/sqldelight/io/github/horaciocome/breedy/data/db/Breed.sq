@@ -1,0 +1,65 @@
+CREATE TABLE IF NOT EXISTS BreedEntity (
+    id TEXT PRIMARY KEY NOT NULL,
+    weightImperial TEXT NOT NULL,
+    weightMetric TEXT NOT NULL,
+    name TEXT NOT NULL,
+    cfaUrl TEXT NOT NULL,
+    vetstreetUrl TEXT NOT NULL,
+    vcahospitalsUrl TEXT NOT NULL,
+    temperament TEXT NOT NULL,
+    origin TEXT NOT NULL,
+    countryCodes TEXT NOT NULL,
+    countryCode TEXT NOT NULL,
+    description TEXT NOT NULL,
+    lifeSpan TEXT NOT NULL,
+    indoor INTEGER NOT NULL,
+    lap INTEGER NOT NULL,
+    altNames TEXT NOT NULL,
+    adaptability INTEGER NOT NULL,
+    affectionLevel INTEGER NOT NULL,
+    childFriendly INTEGER NOT NULL,
+    dogFriendly INTEGER NOT NULL,
+    energyLevel INTEGER NOT NULL,
+    grooming INTEGER NOT NULL,
+    healthIssues INTEGER NOT NULL,
+    intelligence INTEGER NOT NULL,
+    sheddingLevel INTEGER NOT NULL,
+    socialNeeds INTEGER NOT NULL,
+    strangerFriendly INTEGER NOT NULL,
+    vocalisation INTEGER NOT NULL,
+    experimental INTEGER NOT NULL,
+    hairless INTEGER NOT NULL,
+    natural INTEGER NOT NULL,
+    rare INTEGER NOT NULL,
+    rex INTEGER NOT NULL,
+    suppressedTail INTEGER NOT NULL,
+    shortLegs INTEGER NOT NULL,
+    wikipediaUrl TEXT NOT NULL,
+    hypoallergenic INTEGER NOT NULL,
+    referenceImageId TEXT NOT NULL,
+    imageId TEXT NOT NULL,
+    imageWidth INTEGER NOT NULL,
+    imageHeight INTEGER NOT NULL,
+    imageUrl TEXT NOT NULL,
+    createdAt INTEGER NOT NULL
+);
+
+selectAll:
+SELECT *
+FROM BreedEntity
+ORDER BY name ASC;
+
+selectAllWithNameLike:
+SELECT *
+FROM BreedEntity
+WHERE name LIKE '%' || ? || '%'
+ORDER BY name ASC;
+
+insert:
+INSERT OR REPLACE INTO BreedEntity
+VALUES ?;
+
+delete:
+DELETE FROM BreedEntity
+WHERE id = ?
+LIMIT 1;

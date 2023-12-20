@@ -1,0 +1,23 @@
+CREATE TABLE FavoriteBreedEntity (
+    breedId TEXT PRIMARY KEY NOT NULL,
+    createdAt INTEGER NOT NULL
+);
+
+selectAll:
+SELECT *
+FROM BreedEntity
+JOIN FavoriteBreedEntity ON BreedEntity.id = FavoriteBreedEntity.breedId
+ORDER BY FavoriteBreedEntity.createdAt DESC;
+
+selectAllWithId:
+SELECT *
+FROM FavoriteBreedEntity
+WHERE breedId = ?;
+
+insert:
+INSERT OR ABORT INTO FavoriteBreedEntity
+VALUES ?;
+
+deleteWithId:
+DELETE FROM FavoriteBreedEntity
+WHERE breedId = ?;

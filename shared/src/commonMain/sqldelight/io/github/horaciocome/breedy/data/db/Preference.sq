@@ -1,0 +1,13 @@
+CREATE TABLE PreferenceEntity (
+    key TEXT PRIMARY KEY NOT NULL,
+    value TEXT
+);
+
+selectWithKey:
+SELECT * FROM PreferenceEntity WHERE key = ?;
+
+insert:
+INSERT OR REPLACE INTO PreferenceEntity VALUES ?;
+
+delete:
+DELETE FROM PreferenceEntity WHERE key = ?;
